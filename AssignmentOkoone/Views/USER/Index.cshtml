@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AssignmentOkoone.Models.USER>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h3>User Page</h3>
+<div>
+    <!--<div style="float:left;">
+        @using (Html.BeginForm("Index", "USER", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <div class="input-group custom-search-form col-md-3">
+                <input type="text" name="searchText" id="searchText" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        }
+
+    </div>-->
+    <div style="float:right;">
+        <a href="@Url.Action("Create", "USER" )" class="btn btn-primary">Create</a>
+    </div>
+</div>
+<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.USER_NAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DESCRIPTION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CREATED_AT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USER_NAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DESCRIPTION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CREATED_AT)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "USER", new { id = item.ID } )" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Details", "USER", new { id = item.ID } )" class="btn btn-default">Details</a>
+                    <a href="@Url.Action("Delete", "USER", new { id = item.ID } )" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+            var table = $('#dataTables-example').DataTable();
+
+            // #myInput is a <input type="text"> element
+            $('#myInput').on('keyup', function () {
+                table.search(this.value).draw();
+            });
+        });
+    </script>
+}

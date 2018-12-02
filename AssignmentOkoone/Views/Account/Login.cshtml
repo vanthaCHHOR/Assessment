@@ -1,0 +1,22 @@
+﻿@using OkooneAssessment.Models
+@model AccountModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@using (Html.BeginForm("Login", "Account", new { }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <fieldset>
+        <div class="form-group">
+            <!--<input class="form-control" placeholder="User Name" name="email" type="email" autofocus>-->
+            @Html.TextBoxFor(m => Model.user_name, new { @class = "form-control", @placeholder= "User Name" })
+        </div>
+        <div class="form-group">
+            <!--<input class="form-control" placeholder="Password" name="password" type="password" value="">-->
+            @Html.PasswordFor(m => Model.password, new { @class = "form-control", @placeholder = "password" })
+        </div>
+        <input type="submit" value="Log in" class="btn btn-lg btn-success btn-block" />
+        
+    </fieldset>
+
+}
